@@ -3,35 +3,64 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#989E99"
+        android:id="@+id/relativeLayout"></RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_alignParentBottom="true">
 
-        <Button
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pontszám: 0"
+            android:id="@+id/score"
+            android:textSize="20dp"></TextView>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Kilépés"
-            android:id="@+id/logoutButton"
-            android:layout_weight="1"
-            android:layout_marginHorizontal="3dp"/>
+            android:orientation="horizontal">
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Új játék"
-            android:id="@+id/newGameButton"
-            android:layout_weight="1"
-            android:layout_marginHorizontal="3dp"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rotateButton"
+                android:layout_weight="1"
+                android:text="↻"
+                android:layout_marginHorizontal="3dp"/>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ranglista"
-            android:id="@+id/leaderboardButton"
-            android:layout_weight="1"
-            android:layout_marginHorizontal="3dp"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/downButton"
+                android:layout_weight="1"
+                android:text="↓"
+                android:layout_marginHorizontal="3dp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/leftButton"
+                android:layout_weight="1"
+                android:text="←"
+                android:layout_marginHorizontal="3dp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rightButton"
+                android:layout_weight="1"
+                android:text="→"
+                android:layout_marginHorizontal="3dp"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

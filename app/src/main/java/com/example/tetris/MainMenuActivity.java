@@ -2,11 +2,20 @@ package com.example.tetris;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ * this is the main menu activity
+ */
 public class MainMenuActivity extends AppCompatActivity {
 
     boolean pressed = false;
@@ -23,13 +32,18 @@ public class MainMenuActivity extends AppCompatActivity {
         logout = findViewById(R.id.logoutButton);
         newGame = findViewById(R.id.newGameButton);
         leaderboard = findViewById(R.id.leaderboardButton);
+        TextView loggedInPlayer = findViewById(R.id.loggedInPlayer);
+        loggedInPlayer.setText("Bejelentkezve mint " + GlobalClass.getLoggedInPlayer().getUsername());
 
         logout.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (!pressed) {
                     pressed = true;
                     GlobalClass.setLoggedInPlayer(null);
-                    //TODO: add -1 to sharedpreferences
+                    SharedPreferences sharedPref = getSharedPreferences("loginData", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putInt("id", -1);
+                    editor.apply();
                     startActivity(new Intent(MainMenuActivity.this, LoginActivity.class));
                     finish();
                 }
@@ -49,7 +63,7 @@ public class MainMenuActivity extends AppCompatActivity {
         leaderboard.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (!pressed) {
-                    startActivity(new Intent(MainMenuActivity.this, GameActivity.class));
+                    startActivity(new Intent(MainMenuActivity.this, LeaderboardActivity.class));
                 }
                 pressed = false;
             }

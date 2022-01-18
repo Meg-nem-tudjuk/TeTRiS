@@ -5,13 +5,13 @@ import junit.framework.TestCase;
 public class GlobalClassTest extends TestCase {
 
     public void testAddPlayer() {
-        Player testPlayer = new Player("valaki", "valami");
+        Player testPlayer = new Player("valaki", "valami",0);
         GlobalClass.addPlayer(testPlayer);
         assertEquals(testPlayer, GlobalClass.getPlayers().get(GlobalClass.getPlayers().size() - 1));
     }
 
     public void testSetLoggedInPlayer() {
-        Player testPlayer = new Player("valaki", "valami");
+        Player testPlayer = new Player("valaki", "valami", 0);
         GlobalClass.setLoggedInPlayer(testPlayer);
         assertEquals(testPlayer, GlobalClass.getLoggedInPlayer());
     }

@@ -12,6 +12,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * this is the register activity
+ */
 public class RegisterActivity extends AppCompatActivity {
 
     public boolean pressed = false;
@@ -44,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         register.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //if (!pressed) {
+                if (!username.getText().toString().contains("|")) {
                     //pressed = true;
                     boolean taken = false;
                     for (int i = 0; i < GlobalClass.getPlayers().size(); i++) {
@@ -60,13 +63,16 @@ public class RegisterActivity extends AppCompatActivity {
                         Toast.makeText(RegisterActivity.this, "A megadott jelszavak nem egyeznek", Toast.LENGTH_SHORT).show();
                     }
                     else {
-                        Player newPlayer = new Player(username.getText().toString(), GlobalClass.hash(password.getText().toString()));
+                        Player newPlayer = new Player(username.getText().toString(), GlobalClass.hash(password.getText().toString()), 0);
                         GlobalClass.addPlayer(newPlayer);
-                        //TODO: add player to file
+                        String file = GlobalClass.load(RegisterActivity.this);
+                        file += newPlayer.getUsername() + "|" + newPlayer.getPasswordHash() + "|0";
+                        GlobalClass.save(RegisterActivity.this, file);
                         Toast.makeText(RegisterActivity.this, "Sikeres regisztráció", Toast.LENGTH_SHORT).show();
                         finish();
                     }
-                //}
+                }
+                else Toast.makeText(RegisterActivity.this, "A felhasználónév illegális karaktert tartalmaz", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -105,6 +111,9 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * sets the enabled attribute of the register button
+     */
     private void setEnability() {
         register.setEnabled(username.getText().toString().length() >= 1 && password.getText().toString().length() >= 6);
     }
