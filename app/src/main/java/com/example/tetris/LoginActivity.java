@@ -40,20 +40,22 @@ public class LoginActivity extends AppCompatActivity {
         login = findViewById(R.id.loginButton);
         register = findViewById(R.id.registerButton);
 
-        String file = GlobalClass.load(this);
-        Scanner scanner = new Scanner(file);
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            if (line.length() > 0) {
-                String[] splitLine = line.split("\\|");
-                GlobalClass.addPlayer(new Player(splitLine[0], splitLine[1], Integer.parseInt(splitLine[2])));
+        if (GlobalClass.getPlayers().size() == 0) {
+            String file = GlobalClass.load(this);
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                if (line.length() > 0) {
+                    String[] splitLine = line.split("\\|");
+                    GlobalClass.addPlayer(new Player(splitLine[0], splitLine[1], Integer.parseInt(splitLine[2])));
+                }
             }
         }
         SharedPreferences sharedPref = LoginActivity.this.getSharedPreferences("loginData", MODE_PRIVATE);
         if (sharedPref.getInt("id", -1) > -1) {
             GlobalClass.setLoggedInPlayer(GlobalClass.getPlayers().get(sharedPref.getInt("id", -1)));
             startActivity(new Intent(LoginActivity.this, MainMenuActivity.class));
-            finish();
+            //finish();
         }
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         GlobalClass.setLoggedInPlayer(GlobalClass.getPlayers().get(loginIndex));
                         startActivity(new Intent(LoginActivity.this, MainMenuActivity.class));
-                        finish();
+                        //finish();
                     }
                     else Toast.makeText(LoginActivity.this, "Hibás felhasználónév vagy jelszó", Toast.LENGTH_SHORT).show();
                     pressed = false;

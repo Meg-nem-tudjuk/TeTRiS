@@ -14,6 +14,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="#1 somebody"
+            android:textSize="25dp"
+            android:textColor="@color/black"
             android:id="@+id/leaderboardName"></TextView>
 
     </LinearLayout>
@@ -29,6 +31,8 @@
             android:layout_height="wrap_content"
             android:text="12315"
             android:id="@+id/leaderBoardScore"
+            android:textSize="25dp"
+            android:textColor="@color/black"
             android:layout_gravity="right"></TextView>
 
     </LinearLayout>

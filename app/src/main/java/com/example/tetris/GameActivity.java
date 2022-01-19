@@ -594,7 +594,7 @@ public class GameActivity extends AppCompatActivity {
             if (line.length() > 0) {
                 String[] splitLine = line.split("\\|");
                 if (splitLine[0].equals(GlobalClass.getLoggedInPlayer().getUsername())) toSave += GlobalClass.getLoggedInPlayer().getUsername() + "|" + GlobalClass.getLoggedInPlayer().getPasswordHash() + "|" + score + "\n";
-                else toSave += line;
+                else toSave += line + "\n";
             }
         }
         GlobalClass.save(this, toSave);
